@@ -208,6 +208,7 @@ module simple_inquire_statement_handler
         ! kind: SUBROUTINE
         procedure , pass , private :: write_data_with_iostat_access
         procedure , pass , private :: write_data_with_iostat_action
+        procedure , pass , private :: write_data_with_iostat_all
         procedure , pass , private :: write_data_with_iostat_blank
         procedure , pass , private :: write_data_with_iostat_delim
         procedure , pass , private :: write_data_with_iostat_direct
@@ -257,6 +258,8 @@ module simple_inquire_statement_handler
         generic , public :: fetch_data_access      => fetch_data_without_iostat_access
         generic , public :: fetch_data_action      => fetch_data_with_iostat_action
         generic , public :: fetch_data_action      => fetch_data_without_iostat_action
+        generic , public :: fetch_data_all         => fetch_data_with_iostat_all
+        generic , public :: fetch_data_all         => fetch_data_without_iostat_all
         generic , public :: fetch_data_blank       => fetch_data_with_iostat_blank
         generic , public :: fetch_data_blank       => fetch_data_without_iostat_blank
         generic , public :: fetch_data_delim       => fetch_data_with_iostat_delim
@@ -295,6 +298,52 @@ module simple_inquire_statement_handler
         generic , public :: fetch_data_unformatted => fetch_data_without_iostat_unformatted
         generic , public :: fetch_data_write       => fetch_data_with_iostat_write
         generic , public :: fetch_data_write       => fetch_data_without_iostat_write
+
+        ! kind: INTERFACE
+        generic , public :: write_data_access      => write_data_with_iostat_access
+        generic , public :: write_data_access      => write_data_without_iostat_access
+        generic , public :: write_data_action      => write_data_with_iostat_action
+        generic , public :: write_data_action      => write_data_without_iostat_action
+        generic , public :: write_data_all         => write_data_with_iostat_all
+        generic , public :: write_data_all         => write_data_without_iostat_all
+        generic , public :: write_data_blank       => write_data_with_iostat_blank
+        generic , public :: write_data_blank       => write_data_without_iostat_blank
+        generic , public :: write_data_delim       => write_data_with_iostat_delim
+        generic , public :: write_data_delim       => write_data_without_iostat_delim
+        generic , public :: write_data_direct      => write_data_with_iostat_direct
+        generic , public :: write_data_direct      => write_data_without_iostat_direct
+        generic , public :: write_data_exist       => write_data_with_iostat_exist
+        generic , public :: write_data_exist       => write_data_without_iostat_exist
+        generic , public :: write_data_form        => write_data_with_iostat_form
+        generic , public :: write_data_form        => write_data_without_iostat_form
+        generic , public :: write_data_formatted   => write_data_with_iostat_formatted
+        generic , public :: write_data_formatted   => write_data_without_iostat_formatted
+        generic , public :: write_data_name        => write_data_with_iostat_name
+        generic , public :: write_data_name        => write_data_without_iostat_name
+        generic , public :: write_data_named       => write_data_with_iostat_named
+        generic , public :: write_data_named       => write_data_without_iostat_named
+        generic , public :: write_data_nextrec     => write_data_with_iostat_nextrec
+        generic , public :: write_data_nextrec     => write_data_without_iostat_nextrec
+        generic , public :: write_data_number      => write_data_with_iostat_number
+        generic , public :: write_data_number      => write_data_without_iostat_number
+        generic , public :: write_data_opened      => write_data_with_iostat_opened
+        generic , public :: write_data_opened      => write_data_without_iostat_opened
+        generic , public :: write_data_pad         => write_data_with_iostat_pad
+        generic , public :: write_data_pad         => write_data_without_iostat_pad
+        generic , public :: write_data_position    => write_data_with_iostat_position
+        generic , public :: write_data_position    => write_data_without_iostat_position
+        generic , public :: write_data_read        => write_data_with_iostat_read
+        generic , public :: write_data_read        => write_data_without_iostat_read
+        generic , public :: write_data_readwrite   => write_data_with_iostat_readwrite
+        generic , public :: write_data_readwrite   => write_data_without_iostat_readwrite
+        generic , public :: write_data_recl        => write_data_with_iostat_recl
+        generic , public :: write_data_recl        => write_data_without_iostat_recl
+        generic , public :: write_data_sequential  => write_data_with_iostat_sequential
+        generic , public :: write_data_sequential  => write_data_without_iostat_sequential
+        generic , public :: write_data_unformatted => write_data_with_iostat_unformatted
+        generic , public :: write_data_unformatted => write_data_without_iostat_unformatted
+        generic , public :: write_data_write       => write_data_with_iostat_write
+        generic , public :: write_data_write       => write_data_without_iostat_write
 
     end type type_inquire_statement_handler
 
@@ -1794,25 +1843,27 @@ submodule (simple_inquire_statement_handler) imp_init_field
 
     contains
 
-    module procedure init_field_access    ; handler%access    = DEFAULT_STR_FIELD_ACCESS    ; end procedure
-    module procedure init_field_action    ; handler%action    = DEFAULT_STR_FIELD_ACTION    ; end procedure
-    module procedure init_field_blank     ; handler%blank     = DEFAULT_STR_FIELD_BLANK     ; end procedure
-    module procedure init_field_delim     ; handler%delim     = DEFAULT_STR_FIELD_DELIM     ; end procedure
-    module procedure init_field_direct    ; handler%direct    = DEFAULT_STR_FIELD_DIRECT    ; end procedure
-    module procedure init_field_exist     ; handler%exist     = DEFAULT_LGC_FIELD_EXIST     ; end procedure
-    module procedure init_field_form      ; handler%form      = DEFAULT_STR_FIELD_FORM      ; end procedure
-    module procedure init_field_formatted ; handler%formatted = DEFAULT_STR_FIELD_FORMATTED ; end procedure
-    module procedure init_field_name      ; handler%name      = DEFAULT_STR_FIELD_NAME      ; end procedure
-    module procedure init_field_named     ; handler%named     = DEFAULT_LGC_FIELD_NAMED     ; end procedure
-    module procedure init_field_nextrec   ; handler%nextrec   = DEFAULT_INT_FIELD_NEXTREC   ; end procedure
-    module procedure init_field_number    ; handler%number    = DEFAULT_INT_FIELD_NUMBER    ; end procedure
-    module procedure init_field_opened    ; handler%opened    = DEFAULT_LGC_FIELD_OPENED    ; end procedure
-    module procedure init_field_pad       ; handler%pad       = DEFAULT_STR_FIELD_PAD       ; end procedure
-    module procedure init_field_position  ; handler%position  = DEFAULT_STR_FIELD_POSITION  ; end procedure
-    module procedure init_field_read      ; handler%read      = DEFAULT_STR_FIELD_READ      ; end procedure
-    module procedure init_field_readwrite ; handler%readwrite = DEFAULT_STR_FIELD_READWRITE ; end procedure
-    module procedure init_field_recl      ; handler%recl      = DEFAULT_INT_FIELD_RECL      ; end procedure
-    module procedure init_field_write     ; handler%write     = DEFAULT_STR_FIELD_WRITE     ; end procedure
+    module procedure init_field_access      ; handler%access      = DEFAULT_STR_FIELD_ACCESS      ; end procedure
+    module procedure init_field_action      ; handler%action      = DEFAULT_STR_FIELD_ACTION      ; end procedure
+    module procedure init_field_blank       ; handler%blank       = DEFAULT_STR_FIELD_BLANK       ; end procedure
+    module procedure init_field_delim       ; handler%delim       = DEFAULT_STR_FIELD_DELIM       ; end procedure
+    module procedure init_field_direct      ; handler%direct      = DEFAULT_STR_FIELD_DIRECT      ; end procedure
+    module procedure init_field_exist       ; handler%exist       = DEFAULT_LGC_FIELD_EXIST       ; end procedure
+    module procedure init_field_form        ; handler%form        = DEFAULT_STR_FIELD_FORM        ; end procedure
+    module procedure init_field_formatted   ; handler%formatted   = DEFAULT_STR_FIELD_FORMATTED   ; end procedure
+    module procedure init_field_name        ; handler%name        = DEFAULT_STR_FIELD_NAME        ; end procedure
+    module procedure init_field_named       ; handler%named       = DEFAULT_LGC_FIELD_NAMED       ; end procedure
+    module procedure init_field_nextrec     ; handler%nextrec     = DEFAULT_INT_FIELD_NEXTREC     ; end procedure
+    module procedure init_field_number      ; handler%number      = DEFAULT_INT_FIELD_NUMBER      ; end procedure
+    module procedure init_field_opened      ; handler%opened      = DEFAULT_LGC_FIELD_OPENED      ; end procedure
+    module procedure init_field_pad         ; handler%pad         = DEFAULT_STR_FIELD_PAD         ; end procedure
+    module procedure init_field_position    ; handler%position    = DEFAULT_STR_FIELD_POSITION    ; end procedure
+    module procedure init_field_read        ; handler%read        = DEFAULT_STR_FIELD_READ        ; end procedure
+    module procedure init_field_readwrite   ; handler%readwrite   = DEFAULT_STR_FIELD_READWRITE   ; end procedure
+    module procedure init_field_sequential  ; handler%sequential  = DEFAULT_STR_FIELD_SEQUENTIAL  ; end procedure
+    module procedure init_field_unformatted ; handler%unformatted = DEFAULT_STR_FIELD_UNFORMATTED ; end procedure
+    module procedure init_field_recl        ; handler%recl        = DEFAULT_INT_FIELD_RECL        ; end procedure
+    module procedure init_field_write       ; handler%write       = DEFAULT_STR_FIELD_WRITE       ; end procedure
 
 
 

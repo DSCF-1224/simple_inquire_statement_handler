@@ -1,0 +1,100 @@
+# Sample code&colon; `OUTPUT_UNIT` &amp; `ERROR_UNIT` of `ISO_FORTRAN_ENV`
+
+```console
+$ make release_mode
+$ ./test.exe
+
+[OUTPUT_UNIT: all]
+ACCESS      -> SEQUENTIAL
+ACTION      -> WRITE
+BLANK       -> NULL
+DELIM       -> NONE
+DIRECT      -> NO
+EXIST       -> T
+FORM        -> FORMATTED
+FORMATTED   -> YES
+NAME        -> /dev/pts/5
+NAMED       -> T
+NEXTREC     -> 0
+NUMBER      -> 6
+OPENED      -> T
+PAD         -> YES
+POSITION    -> ASIS
+READ        -> NO
+READWRITE   -> NO
+RECL        -> 2147483647
+SEQUENTIAL  -> YES
+UNFORMATTED -> NO
+WRITE       -> YES
+
+[OUTPUT_UNIT: each]
+ACCESS -> SEQUENTIAL
+ACTION -> WRITE
+BLANK -> NULL
+DELIM -> NONE
+DIRECT -> NO
+EXIST -> T
+FORM -> FORMATTED
+FORMATTED -> YES
+NAME -> /dev/pts/5
+NAMED -> T
+NEXTREC -> 0
+NUMBER -> 6
+OPENED -> T
+PAD -> YES
+POSITION -> ASIS
+READ -> NO
+READWRITE -> NO
+RECL -> 2147483647
+SEQUENTIAL -> YES
+UNFORMATTED -> NO
+WRITE -> YES
+
+[ERROR_UNIT: all]
+ACCESS      -> SEQUENTIAL
+ACTION      -> WRITE
+BLANK       -> NULL
+DELIM       -> NONE
+DIRECT      -> NO
+EXIST       -> T
+FORM        -> FORMATTED
+FORMATTED   -> YES
+NAME        -> /dev/pts/5
+NAMED       -> T
+NEXTREC     -> 0
+NUMBER      -> 0
+OPENED      -> T
+PAD         -> YES
+POSITION    -> ASIS
+READ        -> NO
+READWRITE   -> NO
+RECL        -> 2147483647
+SEQUENTIAL  -> YES
+UNFORMATTED -> NO
+WRITE       -> YES
+
+[ERROR_UNIT: each]
+ACCESS -> SEQUENTIAL
+ACTION -> WRITE
+BLANK -> NULL
+DELIM -> NONE
+DIRECT -> NO
+EXIST -> T
+FORM -> FORMATTED
+FORMATTED -> YES
+NAME -> /dev/pts/5
+NAMED -> T
+NEXTREC -> 0
+NUMBER -> 0
+OPENED -> T
+PAD -> YES
+POSITION -> ASIS
+READ -> NO
+READWRITE -> NO
+RECL -> 2147483647
+SEQUENTIAL -> YES
+UNFORMATTED -> NO
+WRITE -> YES
+```
+
+<!-- EOF -->
