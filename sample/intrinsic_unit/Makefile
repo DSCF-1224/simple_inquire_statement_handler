@@ -45,4 +45,4 @@ release_mode:
 	make FFLAGS="$(FFLAGS_RELEASE)"
 
 run_exe:
-	time $(TARGET)
+	time $(TARGET) >./log.txt

@@ -1,9 +1,67 @@
-# Sample code&colon; `OUTPUT_UNIT` &amp; `ERROR_UNIT` of `ISO_FORTRAN_ENV`
+# Sample code&colon; `*_UNIT` of `ISO_FORTRAN_ENV`
+
+## How to run
 
 ```console
 $ make release_mode
 $ ./test.exe
+```
 
+## Result
+
+### INPUT_UNIT
+
+```
+[INPUT_UNIT: all]
+ACCESS      -> SEQUENTIAL
+ACTION      -> READ
+BLANK       -> NULL
+DELIM       -> NONE
+DIRECT      -> NO
+EXIST       -> T
+FORM        -> FORMATTED
+FORMATTED   -> YES
+NAME        -> /dev/pts/3
+NAMED       -> T
+NEXTREC     -> 0
+NUMBER      -> 5
+OPENED      -> T
+PAD         -> YES
+POSITION    -> ASIS
+READ        -> YES
+READWRITE   -> NO
+RECL        -> 2147483647
+SEQUENTIAL  -> YES
+UNFORMATTED -> NO
+WRITE       -> NO
+
+[INPUT_UNIT: each]
+ACCESS -> SEQUENTIAL
+ACTION -> READ
+BLANK -> NULL
+DELIM -> NONE
+DIRECT -> NO
+EXIST -> T
+FORM -> FORMATTED
+FORMATTED -> YES
+NAME -> /dev/pts/3
+NAMED -> T
+NEXTREC -> 0
+NUMBER -> 5
+OPENED -> T
+PAD -> YES
+POSITION -> ASIS
+READ -> YES
+READWRITE -> NO
+RECL -> 2147483647
+SEQUENTIAL -> YES
+UNFORMATTED -> NO
+WRITE -> NO
+```
+
+### OUTPUT_UNIT
+
+```
 [OUTPUT_UNIT: all]
 ACCESS      -> SEQUENTIAL
 ACTION      -> WRITE
@@ -13,13 +71,13 @@ DIRECT      -> NO
 EXIST       -> T
 FORM        -> FORMATTED
 FORMATTED   -> YES
-NAME        -> /dev/pts/5
+NAME        -> stdout
 NAMED       -> T
 NEXTREC     -> 0
 NUMBER      -> 6
 OPENED      -> T
 PAD         -> YES
-POSITION    -> ASIS
+POSITION    -> APPEND
 READ        -> NO
 READWRITE   -> NO
 RECL        -> 2147483647
@@ -36,20 +94,24 @@ DIRECT -> NO
 EXIST -> T
 FORM -> FORMATTED
 FORMATTED -> YES
-NAME -> /dev/pts/5
+NAME -> stdout
 NAMED -> T
 NEXTREC -> 0
 NUMBER -> 6
 OPENED -> T
 PAD -> YES
-POSITION -> ASIS
+POSITION -> APPEND
 READ -> NO
 READWRITE -> NO
 RECL -> 2147483647
 SEQUENTIAL -> YES
 UNFORMATTED -> NO
 WRITE -> YES
+```
 
+### ERROR_UNIT
+
+```
 [ERROR_UNIT: all]
 ACCESS      -> SEQUENTIAL
 ACTION      -> WRITE
@@ -59,7 +121,7 @@ DIRECT      -> NO
 EXIST       -> T
 FORM        -> FORMATTED
 FORMATTED   -> YES
-NAME        -> /dev/pts/5
+NAME        -> /dev/pts/3
 NAMED       -> T
 NEXTREC     -> 0
 NUMBER      -> 0
@@ -82,7 +144,7 @@ DIRECT -> NO
 EXIST -> T
 FORM -> FORMATTED
 FORMATTED -> YES
-NAME -> /dev/pts/5
+NAME -> /dev/pts/3
 NAMED -> T
 NEXTREC -> 0
 NUMBER -> 0
@@ -95,6 +157,56 @@ RECL -> 2147483647
 SEQUENTIAL -> YES
 UNFORMATTED -> NO
 WRITE -> YES
+```
+
+### IOSTAT_INQUIRE_INTERNAL_UNIT
+
+```
+[IOSTAT_INQUIRE_INTERNAL_UNIT: all]
+ACCESS      -> UNDEFINED
+ACTION      -> UNDEFINED
+BLANK       -> UNDEFINED
+DELIM       -> UNDEFINED
+DIRECT      -> UNKNOWN
+EXIST       -> T
+FORM        -> UNDEFINED
+FORMATTED   -> UNKNOWN
+NAME        -> 
+NAMED       -> F
+NEXTREC     -> 0
+NUMBER      -> -1
+OPENED      -> F
+PAD         -> UND
+POSITION    -> UNDEFINED
+READ        -> NO
+READWRITE   -> NO
+RECL        -> -1
+SEQUENTIAL  -> UNKNOWN
+UNFORMATTED -> UNKNOWN
+WRITE       -> NO
+
+[IOSTAT_INQUIRE_INTERNAL_UNIT: each]
+ACCESS -> UNDEFINED
+ACTION -> UNDEFINED
+BLANK -> UNDEFINED
+DELIM -> UNDEFINED
+DIRECT -> UNKNOWN
+EXIST -> T
+FORM -> UNDEFINED
+FORMATTED -> UNKNOWN
+NAME -> 
+NAMED -> F
+NEXTREC -> 0
+NUMBER -> -1
+OPENED -> F
+PAD -> UND
+POSITION -> UNDEFINED
+READ -> NO
+READWRITE -> NO
+RECL -> -1
+SEQUENTIAL -> UNKNOWN
+UNFORMATTED -> UNKNOWN
+WRITE -> NO
 ```
 
 <!-- EOF -->

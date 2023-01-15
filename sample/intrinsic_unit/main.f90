@@ -7,8 +7,10 @@ program test
     ! require all variables to be explicitly declared
     implicit none
 
-    call exec_test( OUTPUT_UNIT , 'OUTPUT_UNIT' )
-    call exec_test( ERROR_UNIT  , 'ERROR_UNIT'  )
+    call exec_test( INPUT_UNIT                   , 'INPUT_UNIT'                   )
+    call exec_test( OUTPUT_UNIT                  , 'OUTPUT_UNIT'                  )
+    call exec_test( ERROR_UNIT                   , 'ERROR_UNIT'                   )
+    call exec_test( IOSTAT_INQUIRE_INTERNAL_UNIT , 'IOSTAT_INQUIRE_INTERNAL_UNIT' )
 
     contains
 
@@ -23,33 +25,38 @@ program test
 
         call handler%fetch_data_all(unit_number)
 
-        print '(/,A,A,A)' , '[', unit_name, ': all]'
+        print '(A,1X,A,/)' , '###' , unit_name
 
-        call handler%write_data_all(unit_number)
+        print '(A)' , '```'
+        print '(A)' , '[' // unit_name // ': all]'
 
-        print '(/,A,A,A)' , '[', unit_name, ': each]'
+        call handler%write_data_all(OUTPUT_UNIT)
 
-        call handler%write_data_access      (unit_number)
-        call handler%write_data_action      (unit_number)
-        call handler%write_data_blank       (unit_number)
-        call handler%write_data_delim       (unit_number)
-        call handler%write_data_direct      (unit_number)
-        call handler%write_data_exist       (unit_number)
-        call handler%write_data_form        (unit_number)
-        call handler%write_data_formatted   (unit_number)
-        call handler%write_data_name        (unit_number)
-        call handler%write_data_named       (unit_number)
-        call handler%write_data_nextrec     (unit_number)
-        call handler%write_data_number      (unit_number)
-        call handler%write_data_opened      (unit_number)
-        call handler%write_data_pad         (unit_number)
-        call handler%write_data_position    (unit_number)
-        call handler%write_data_read        (unit_number)
-        call handler%write_data_readwrite   (unit_number)
-        call handler%write_data_recl        (unit_number)
-        call handler%write_data_sequential  (unit_number)
-        call handler%write_data_unformatted (unit_number)
-        call handler%write_data_write       (unit_number)
+        print '(/,A)' , '[' // unit_name // ': each]'
+
+        call handler%write_data_access      (OUTPUT_UNIT)
+        call handler%write_data_action      (OUTPUT_UNIT)
+        call handler%write_data_blank       (OUTPUT_UNIT)
+        call handler%write_data_delim       (OUTPUT_UNIT)
+        call handler%write_data_direct      (OUTPUT_UNIT)
+        call handler%write_data_exist       (OUTPUT_UNIT)
+        call handler%write_data_form        (OUTPUT_UNIT)
+        call handler%write_data_formatted   (OUTPUT_UNIT)
+        call handler%write_data_name        (OUTPUT_UNIT)
+        call handler%write_data_named       (OUTPUT_UNIT)
+        call handler%write_data_nextrec     (OUTPUT_UNIT)
+        call handler%write_data_number      (OUTPUT_UNIT)
+        call handler%write_data_opened      (OUTPUT_UNIT)
+        call handler%write_data_pad         (OUTPUT_UNIT)
+        call handler%write_data_position    (OUTPUT_UNIT)
+        call handler%write_data_read        (OUTPUT_UNIT)
+        call handler%write_data_readwrite   (OUTPUT_UNIT)
+        call handler%write_data_recl        (OUTPUT_UNIT)
+        call handler%write_data_sequential  (OUTPUT_UNIT)
+        call handler%write_data_unformatted (OUTPUT_UNIT)
+        call handler%write_data_write       (OUTPUT_UNIT)
+
+        print '(A,/)' , '```'
 
     end subroutine exec_test
 
